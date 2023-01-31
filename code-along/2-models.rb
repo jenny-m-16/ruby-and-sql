@@ -16,12 +16,69 @@ Company.destroy_all
 
 # 2. insert new rows in companies table
 
+puts "There are #{Company.all.count} companies"
+
+new_company = Company.new 
+new_company["name"] = "Apple"
+new_company["city"] = "Cupertino"
+new_company["state"] = "CA"
+new_company["url"] = "apple.com"
+
+new_company.save
+
+puts "There are #{Company.all.count} companies"
+
+new_company = Company.new 
+new_company["name"] = "Amazon"
+new_company["city"] = "Seattle"
+new_company["state"] = "WA"
+
+new_company.save
+
+puts "There are #{Company.all.count} companies"
+
+new_company = Company.new 
+new_company["name"] = "Twitter"
+new_company["city"] = "SF"
+new_company["state"] = "CA"
+
+new_company.save
+
+puts "There are #{Company.all.count} companies"
+
+all_companies = Company.all
+
+# puts all_companies.inspect
+
 # 3. query companies table to find all row with California company
+
+cali_companies = Company.where({"state" => "CA"})
+
+puts cali_companies.inspect
+
+puts cali_companies.count
 
 # 4. query companies table to find single row for Apple
 
+apple = Company.where({"name" => "Apple"})[0]["name"]
+
+puts apple.inspect
+
 # 5. read a row's column value
+
+
 
 # 6. update a row's column value
 
+amazon = Company.find_by({"name" => "Amazon"})
+
+amazon["url"] = "amazon.com"
+amazon.save
+
+puts amazon.inspect
+
 # 7. delete a row
+
+twitter = Company.find_by({"name" => "Twitter"})
+twitter.destroy
+puts Company.all.inspect
